@@ -4,6 +4,6 @@ import sqlite3
 data=pd.read_csv(ipl-structured.csv)
 #database connectivity
 c=sqlite3.connect('IPL.db')
-data.to_sql('auction',conn)
+data.to_sql('auction',c)
 df=pd.read_sql("select*from auction where team='PBKS'",c)
 print(df)
