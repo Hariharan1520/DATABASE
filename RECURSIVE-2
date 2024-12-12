@@ -1,0 +1,20 @@
+P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * *
+
+
+
+Write a query to print the pattern P(20).
+WITH RECURSIVE PATTERN(ROW_NUM, STARS) AS (
+    SELECT 1 AS ROW_NUM, CAST(REPEAT('* ', 1)AS CHAR(100)) STARS
+    UNION ALL
+    SELECT ROW_NUM + 1, CAST(REPEAT('* ', ROW_NUM + 1) AS CHAR(100))
+    FROM PATTERN
+    WHERE ROW_NUM < 20
+)
+SELECT STARS
+FROM PATTERN;
